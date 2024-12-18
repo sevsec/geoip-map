@@ -112,25 +112,25 @@ def fetch_user_ip():
 # Streamlit App
 def main():
     st.set_page_config(layout="wide")
-    st.title("IP Geolocation")
+    st.sidebar.header("IP Geolocation")
 
     # Fetch user's IP
     user_location = fetch_user_ip()
     if user_location:
-        st.write(f"User IP: **{user_location['ip']}**")
+        st.sidebar.write(f"User IP: **{user_location['ip']}**")
     else:
-        st.warning("(N/A)")
+        st.sidebar.warning("(N/A)")
 
     # Service selection
-    service = st.selectbox("Geolocation Service:", ["ip-api.com", "ipinfo.io", "ipgeolocation.io"])
+    service = st.sidebar.selectbox("Geolocation Service:", ["ip-api.com", "ipinfo.io", "ipgeolocation.io"])
 
     # Input API token
     token = ""
     if service != "ip-api.com":
-        token = st.text_input(f"API Token for {service}:", type="password")
+        token = st.sidebar.text_input(f"API Token for {service}:", type="password")
 
     # Upload file
-    uploaded_file = st.file_uploader("Log File", type=["txt", "log"])
+    uploaded_file = st.sidebar.file_uploader("Log File", type=["txt", "log"])
 
     if uploaded_file:
         ip_addresses = load_ip_addresses(uploaded_file)
@@ -210,7 +210,7 @@ def main():
                 ),
             use_container_width=True,
             # Statically defined for now
-            height=800
+            height=1080
             )
         else:
             st.warning("No geolocation data found. Please check your API token or input file.")
