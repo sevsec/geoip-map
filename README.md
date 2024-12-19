@@ -20,7 +20,7 @@ streamlit run geoip-map.py
 ```
 
 ## File Format
-Any file that contains IP addresses. The application uses regex to pull all IP addresses. If an address has already been processed, it will be ignored.
+Any file that contains IP addresses; the application uses regex to pull all IP addresses. If an address has already been processed, it will be ignored. RFC 1918 addresses are also ignored, but some other non-publicly routable addresses are not.
 
 ## API Keys
 - **ipinfo.io** requires an API key
@@ -42,3 +42,6 @@ A map with points indicating the geographical location of the IP addresses.
 ## TODO
 - Config file that allows users to specify GeoIP services
 - Provide continuous monitoring/real-time updates
+
+## License
+GNU GENERAL PUBLIC LICENSE 3.0
